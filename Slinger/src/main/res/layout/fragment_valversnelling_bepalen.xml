@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:gravity="fill"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/instructie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Druk op Start en meet 10 slingerbewegingen."
+        android:textSize="30sp"/>
+
+         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:id="@+id/radioGroup">
+             <RadioButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="20cm"
+                 android:textSize="25sp"/>
+
+             <RadioButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="25cm"
+                 android:textSize="25sp"/>
+
+             <RadioButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="30cm"
+                 android:textSize="25sp"/>
+
+             <RadioButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="35cm"
+                 android:textSize="25sp"/>
+          </RadioGroup>
+         <!--<TextView
+             android:id="@+id/textView1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="5dp"
+             android:text="Lengte Slinger = "
+             android:textSize="25sp" />-->
+       <!-- <Spinner
+            android:id="@+id/lengte_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25sp"/>-->
+    <Chronometer
+        android:id="@+id/chrono_periode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chronometer"
+        android:textSize="50sp"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="2"
+        android:layout_margin="5dp">
+
+        <Button
+            android:id="@+id/start_stop_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:text="Start"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/bereken_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:text="Bereken"
+            android:textSize="35sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lbl_resultaat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="45sp" />
+
+    <ListView
+        android:id="@+id/lst_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ListView>
+</LinearLayout>

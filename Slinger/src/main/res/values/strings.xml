@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Slinger</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="slinger_lengtes">
+        <item>20cm</item>
+        <item>25cm</item>
+        <item>30cm</item>
+        <item>35cm</item>
+    </string-array>
+    <plurals name="instructie">
+        <item quantity="one">Druk op Start en meet 1 slingerbeweging.</item>
+        <item quantity="other">Druk op Start en meet %d slingerbewegingen.</item>
+    </plurals>
+</resources>
