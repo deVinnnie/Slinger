@@ -33,27 +33,13 @@ public class ValversnellingFragment extends AbstractSlingerFragment {
         instructieTekst.setText(instructie);
 
         radioGroup = (RadioGroup) getView().findViewById(R.id.radioGroup);
-
-                /*// get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                // find the radiobutton by returned id
-                radioSexButton = (RadioButton) findViewById(selectedId);
-
-                Toast.makeText(MyAndroidAppActivity.this,
-                        radioSexButton.getText(), Toast.LENGTH_SHORT).show();
-*/
-
-        /*Spinner spinner = (Spinner) getView().findViewById(R.id.lengte_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
-            R.array.slinger_lengtes, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);*/
     }
 
+    /**
+     * Geef lengte van de slinger in meter.
+     *
+     * @return Lengte in meter.
+     */
     private double getLengte(){
         //Get selected radio button from radioGroup
         int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -67,7 +53,7 @@ public class ValversnellingFragment extends AbstractSlingerFragment {
 
         String strLengte = (String) data;
         double lengte = Double.parseDouble(strLengte.substring(0, strLengte.length() - 2));
-        return lengte;
+        return lengte / 100; //Converteert van cm naar m.
     }
     
     /**
