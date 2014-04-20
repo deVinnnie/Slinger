@@ -15,49 +15,51 @@
         android:text="Druk op Start en meet 10 slingerbewegingen."
         android:textSize="30sp"/>
 
-         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:orientation="horizontal"
-             android:id="@+id/radioGroup">
-             <RadioButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="20cm"
-                 android:textSize="25sp"/>
-
-             <RadioButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="25cm"
-                 android:textSize="25sp"/>
-
-             <RadioButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="30cm"
-                 android:textSize="25sp"/>
-
-             <RadioButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="35cm"
-                 android:textSize="25sp"/>
-          </RadioGroup>
-         <!--<TextView
-             android:id="@+id/textView1"
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+        android:gravity="center"
+         android:id="@+id/radioGroup">
+         <RadioButton
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_margin="5dp"
-             android:text="Lengte Slinger = "
-             android:textSize="25sp" />-->
-       <!-- <Spinner
-            android:id="@+id/lengte_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="25sp"/>-->
+             android:text="34cm"
+             android:textSize="20sp"/>
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="54cm"
+             android:textSize="20sp"/>
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="74cm"
+             android:textSize="20sp"/>
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="94cm"
+             android:textSize="20sp"/>
+
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="114cm"
+             android:textSize="20sp"/>
+
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="134cm"
+             android:textSize="20sp"/>
+    </RadioGroup>
+
     <Chronometer
         android:id="@+id/chrono_periode"
         android:layout_width="wrap_content"
