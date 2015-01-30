@@ -14,4 +14,11 @@
         android:title="Maximum Chronometer Waarde (seconden)"
         android:inputType="number"
         />
+
+    <EditTextPreference
+        android:defaultValue="120"
+        android:key="idle_time"
+        android:title="Idle Time (seconden)"
+        android:inputType="number"
+        />
 </PreferenceScreen>

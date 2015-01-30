@@ -1,20 +1,17 @@
 package be.mira.slinger;
 
-import java.text.DecimalFormat;
-import be.mira.slinger.model.Slinger;
-
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
+
+import be.mira.slinger.model.Slinger;
 
 public class LengteBepalingFragment extends AbstractSlingerFragment {
 
@@ -29,10 +26,22 @@ public class LengteBepalingFragment extends AbstractSlingerFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
-        Resources res = getResources();
-        String instructie = res.getQuantityString(R.plurals.instructie, (int) this.getAantalMetingen(), (int) this.getAantalMetingen());
-        TextView instructieTekst = (TextView) getView().findViewById(R.id.instructie);
-        instructieTekst.setText(instructie);
+    }
+
+    @Override
+    public void showHelpDialog(){
+        super.showHelpDialog();
+        //Dialog
+        FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = this.getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        DialogFragment help = new HelpDialogFragment(R.string.dialog_instruction_lengte);
+        help.show(ft, "dialog");
     }
     
     /**

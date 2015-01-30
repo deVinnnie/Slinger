@@ -6,15 +6,6 @@
     android:gravity="fill"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/instructie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:gravity="center"
-        android:text="Druk op Start en meet 10 slingerbewegingen."
-        android:textSize="30sp"/>
-
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
@@ -60,7 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:weightSum="2"
         android:layout_margin="5dp">
 
         <Button
@@ -70,7 +60,7 @@
             android:layout_weight="1"
             android:padding="20dp"
             android:text="Start"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/bereken_button"
@@ -79,7 +69,16 @@
             android:layout_weight="1"
             android:padding="20dp"
             android:text="Bereken"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:src="@drawable/ic_action_help"
+            android:id="@+id/help_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:padding="20dp"
+            />
     </LinearLayout>
 
     <TextView

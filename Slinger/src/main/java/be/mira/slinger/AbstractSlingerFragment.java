@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public abstract class AbstractSlingerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         this.setChronometer((Chronometer) getView().findViewById(R.id.chrono_periode));
 
         this.getChronometer().setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -105,6 +107,15 @@ public abstract class AbstractSlingerFragment extends Fragment {
                 }
         );
 
+        ImageButton helpButton = (ImageButton) getView().findViewById(R.id.help_button);
+        helpButton.setOnClickListener(
+            new ImageButton.OnClickListener() {
+                public void onClick(View view) {
+                    showHelpDialog();
+                }
+            }
+        );
+
         //Load Preferences
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         try{
@@ -124,6 +135,16 @@ public abstract class AbstractSlingerFragment extends Fragment {
         ListView lst_history = (ListView) getView().findViewById(R.id.lst_history);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, history);
         lst_history.setAdapter(adapter);
+
+        //Verander tekst naar juist aantal metingen.
+        /*
+        Resources res = getResources();
+        String instructie = res.getQuantityString(R.plurals.instructie, (int) this.getAantalMetingen(), (int) this.getAantalMetingen());
+        TextView instructieTekst = (TextView) getView().findViewById(R.id.instructie);
+        instructieTekst.setText(instructie);*/
+
+        //Show Help Dialog
+        //this.showHelpDialog();
     }
 
     public void startStopChrono(View view){
@@ -146,6 +167,9 @@ public abstract class AbstractSlingerFragment extends Fragment {
     }
 
     public abstract void bereken(View view);
+    public void showHelpDialog(){
+        ((MainActivity) getActivity()).dialogActive = true;
+    }
 
     protected void addToHistory(String message){
         ListView lst_history = (ListView) getView().findViewById(R.id.lst_history);

@@ -1,7 +1,10 @@
 package be.mira.slinger;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,12 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -34,6 +33,25 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+
+
+    //runs without a timer by reposting this handler at the end of the runnable
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable(){
+        @Override
+        public void run() {
+            if(!dialogActive){
+                Fragment page = getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+                // based on the current position you can then cast the page to the correct
+                // class and call the method:
+                if (mViewPager.getCurrentItem() == 0 && page != null) {
+                    ((AbstractSlingerFragment)  page).showHelpDialog();
+                }
+            }
+        }
+    };
+    private long idleTime;
+    public boolean dialogActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +89,19 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             actionBar.addTab(
                     actionBar.newTab()
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
+                            .setTabListener(this)
+            );
+        }
+
+        //Load Preferences
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        try{
+            this.idleTime = Long.parseLong(sharedPref.getString("idle_time","")) * 1000L;
+        }
+        catch(NumberFormatException ex){
+            this.idleTime = 120000L;
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,6 +144,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onUserInteraction(){
+        this.resetUserInteractionTimer();
+    }
+
+    public void resetUserInteractionTimer(){
+        timerHandler.removeCallbacks(timerRunnable);
+        timerHandler.postDelayed(timerRunnable, this.idleTime);
+    }
+
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -151,8 +189,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 2;
+            return 2; //2 Pages
         }
 
         @Override
@@ -163,7 +200,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return "Lengte";
                 case 1:
                     return "Valversnelling";
-
             }
             return null;
         }
