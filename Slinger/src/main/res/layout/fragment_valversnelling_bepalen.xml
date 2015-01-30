@@ -47,12 +47,14 @@
     </RadioGroup>
 
     <Chronometer
+        android:drawableLeft="@drawable/ic_action_alarms"
         android:id="@+id/chrono_periode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chronometer"
         android:textSize="50sp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"

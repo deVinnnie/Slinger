@@ -7,4 +7,11 @@
         android:title="Aantal metingen"
         android:inputType="number"
         />
+
+    <EditTextPreference
+        android:defaultValue="120"
+        android:key="max_time_ellapsed"
+        android:title="Maximum Chronometer Waarde (seconden)"
+        android:inputType="number"
+        />
 </PreferenceScreen>

@@ -21,6 +21,9 @@ public abstract class AbstractSlingerFragment extends Fragment {
     private double aantalMetingen;
     private Button start_stop_button;
 
+    //Maximum value for chrono before it is automatically reset.
+    private double maxTimeEllapsed;//in s
+
     //<editor-fold desc="Getters en Setters">
     protected void setChronometer(Chronometer chronometer) {
         this.chronometer = chronometer;
@@ -68,6 +71,20 @@ public abstract class AbstractSlingerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.setChronometer((Chronometer) getView().findViewById(R.id.chrono_periode));
 
+        this.getChronometer().setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                //Reset chronomoter if the ellapsed time is larger than maxTimeEllapsed.
+                double timeElapsed = SystemClock.elapsedRealtime() - chronometer.getBase(); //miliseconds.
+                if((timeElapsed / 1000d) >= maxTimeEllapsed) {
+                    chronometer.stop();
+                    AbstractSlingerFragment.this.setPeriode((timeElapsed/1000d) / getAantalMetingen());
+                    AbstractSlingerFragment.this.setChronoRunning(false);
+                    AbstractSlingerFragment.this.getStart_stop_button().setText("Start");
+                }
+            }
+        });
+
         Button startStopButton = (Button) getView().findViewById(R.id.start_stop_button);
         startStopButton.setOnClickListener(
                 new Button.OnClickListener() {
@@ -88,6 +105,7 @@ public abstract class AbstractSlingerFragment extends Fragment {
                 }
         );
 
+        //Load Preferences
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         try{
             this.aantalMetingen = Double.parseDouble(sharedPref.getString("aantal_metingen",""));
@@ -96,24 +114,34 @@ public abstract class AbstractSlingerFragment extends Fragment {
             this.aantalMetingen = 10d;
         }
 
+        try{
+            this.maxTimeEllapsed = Double.parseDouble(sharedPref.getString("max_time_ellapsed",""));
+        }
+        catch(NumberFormatException ex){
+            this.maxTimeEllapsed = 120d;
+        }
+
         ListView lst_history = (ListView) getView().findViewById(R.id.lst_history);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, history);
         lst_history.setAdapter(adapter);
     }
 
     public void startStopChrono(View view){
+        Chronometer chronometer = this.getChronometer();
         if(!this.isChronoRunning()){
-            this.getChronometer().setBase(SystemClock.elapsedRealtime());
-            this.getChronometer().start();
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            chronometer.start();
             this.setChronoRunning(true);
             this.getStart_stop_button().setText("Stop");
+            getView().findViewById(R.id.bereken_button).setEnabled(false);
         }
         else{
-            this.getChronometer().stop();
-            double timeElapsed = SystemClock.elapsedRealtime() - this.getChronometer().getBase();
+            chronometer.stop();
+            double timeElapsed = SystemClock.elapsedRealtime() - chronometer.getBase();
             this.setPeriode((timeElapsed/1000d) / this.getAantalMetingen());
             this.setChronoRunning(false);
             this.getStart_stop_button().setText("Start");
+            getView().findViewById(R.id.bereken_button).setEnabled(true);
         }
     }
 
