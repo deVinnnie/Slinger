@@ -19,45 +19,31 @@
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
          android:orientation="horizontal"
-        android:gravity="center"
+         android:gravity="center"
          android:id="@+id/radioGroup">
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="34cm"
-             android:textSize="20sp"/>
+            style="@style/RadioText"
+            android:text="34cm"/>
 
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="54cm"
-             android:textSize="20sp"/>
+             style="@style/RadioText"
+             android:text="54cm"/>
 
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="74cm"
-             android:textSize="20sp"/>
+             style="@style/RadioText"
+             android:text="74cm"/>
 
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="94cm"
-             android:textSize="20sp"/>
-
+             style="@style/RadioText"
+             android:text="94cm"/>
 
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="114cm"
-             android:textSize="20sp"/>
-
+             style="@style/RadioText"
+             android:text="114cm"/>
 
          <RadioButton
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="134cm"
-             android:textSize="20sp"/>
+             style="@style/RadioText"
+             android:text="134cm"/>
     </RadioGroup>
 
     <Chronometer
