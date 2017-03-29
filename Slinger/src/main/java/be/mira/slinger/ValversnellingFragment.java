@@ -60,13 +60,13 @@ public class ValversnellingFragment extends AbstractSlingerFragment {
     @Override
     public void bereken(View view) {
         double lengte = this.getLengte();
-		double result = Slinger.berekenValversnelling(this.getPeriode(),lengte);
+        double result = Slinger.berekenValversnelling(this.getPeriode(),lengte);
 
         DecimalFormat df = new DecimalFormat("###.##"); //Afronden tot op 2 cijfers na de komma.
         String strResult = "Valversnelling=" + df.format(result)+"m/s";
 
-		TextView lbl_resultaat = (TextView) getView().findViewById(R.id.lbl_resultaat);
-		lbl_resultaat.setText(strResult);
+        TextView lbl_resultaat = (TextView) getView().findViewById(R.id.lbl_resultaat);
+        lbl_resultaat.setText(strResult);
 
 //        this.addToHistory("Periode="+df.format(this.getPeriode()) + "s : " + "Valversnelling="+strResult);
     }

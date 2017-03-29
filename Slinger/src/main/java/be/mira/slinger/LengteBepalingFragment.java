@@ -51,13 +51,13 @@ public class LengteBepalingFragment extends AbstractSlingerFragment {
      */
     @Override
     public void bereken(View view) {
-		double result = Slinger.berekenLengte(this.getPeriode());
-		result*= 100; //Converteren naar centimer. 
-		DecimalFormat df = new DecimalFormat("###.##"); //Afronden tot op 2 cijfers na de komma.
-		String strResult = "Lengte="+df.format(result)+"cm";
-		
-		TextView lbl_resultaat = (TextView) getView().findViewById(R.id.lbl_resultaat);
-		lbl_resultaat.setText(strResult);
+        double result = Slinger.berekenLengte(this.getPeriode());
+        result*= 100; //Converteren naar centimer.
+        DecimalFormat df = new DecimalFormat("###.##"); //Afronden tot op 2 cijfers na de komma.
+        String strResult = "Lengte="+df.format(result)+"cm";
+
+        TextView lbl_resultaat = (TextView) getView().findViewById(R.id.lbl_resultaat);
+        lbl_resultaat.setText(strResult);
 
         this.addToHistory("Periode="+df.format(this.getPeriode()) + "s : " + "Lengte="+df.format(result)+"cm");
     }
