@@ -28,6 +28,9 @@ public class Slinger {
      * @return De valversnelling g in meter per seconde.
      */
     public static double berekenValversnelling(double periode, double lengte){
+        if(periode <= 0 || lengte <= 0){
+            return 0;
+        }
         return Math.pow((2*Math.PI*Math.sqrt(lengte))/periode, 2);
     }
 }
