@@ -41,6 +41,9 @@ public class ValversnellingFragment extends AbstractSlingerFragment {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         RadioButton selectedRadioButton = (RadioButton) getView().findViewById(selectedId);
 
+        if(selectedRadioButton == null){
+            return 0;
+        }
         Object data = selectedRadioButton.getText();
 
         if(null == data){
