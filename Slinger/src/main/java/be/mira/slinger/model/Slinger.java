@@ -15,6 +15,9 @@ public class Slinger {
      * @return De lengte van de slinger in meter.
     */
     public static double berekenLengte(double periode){
+        if(periode <= 0){
+            return 0;
+        }
         double result = (periode*Math.sqrt(Slinger.VALVERSNELLING))/(2*Math.PI); //T*sqrt(9.81) / (2*pi)
         result = Math.pow(result, 2);
         return result;
